@@ -1,19 +1,22 @@
 export const blogPosts = [
   {
     title: "my first post",
-    date: new Date(),
+    slug: "first",
+    date: new Date().toString(),
     content:
       "Ubi est secundus historia? Decor, cotta, et planeta. Vae. Omnias studere in bi-color aboa! Barcass volare, tanquam clemens habena.",
   },
   {
     title: "my second post",
-    date: new Date(),
+    slug: "second",
+    date: new Date().toString(),
     content:
       "Ubi est secundus historia? Decor, cotta, et planeta. Vae. Omnias studere in bi-color aboa! Barcass volare, tanquam clemens habena.",
   },
   {
     title: "my third post",
-    date: new Date(),
+    slug: "third",
+    date: new Date().toString(),
     content:
       "Ubi est secundus historia? Decor, cotta, et planeta. Vae. Omnias studere in bi-color aboa! Barcass volare, tanquam clemens habena.",
   },
