@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "prettier": "^2.2.1"
+  },
+  "devDependencies": {
+    "@types/prettier": "^2.2.3"
+  }
+}
