@@ -1,8 +1,12 @@
 import Head from "next/head";
-import { blogPosts } from "../../lib/data";
+import renderToString from "next-mdx-remote/render-to-string";
+import hydrate from "next-mdx-remote/hydrate";
+
+import { getAllPosts } from "../../lib/data";
 import { format, parseISO } from "date-fns";
 
 const Blog = ({ title, date, content }: any) => {
+  const hydratedContent = hydrate(content);
   return (
     <div>
       <Head>
@@ -15,7 +19,7 @@ const Blog = ({ title, date, content }: any) => {
             {format(parseISO(date), "MMMM do, uuu")}
           </div>
         </div>
-        <p className={"blog-content"}>{content}</p>
+        <p className={"blog-content"}>{hydratedContent}</p>
       </main>
     </div>
   );
@@ -25,16 +29,29 @@ export default Blog;
 
 export async function getStaticProps(context: any) {
   const { params } = context;
+  const allPosts = getAllPosts();
+  const content = allPosts.find((post) => post.slug === params.slug);
+
+  const mdxSource =
+    content && content.content ? await renderToString(content.content) : "";
 
   return {
-    props: blogPosts.find((item) => item.slug === params.slug),
+    props: content
+      ? {
+          title: content.data.title,
+          date: content.data.date.toISOString(),
+          content: mdxSource,
+        }
+      : { title: "", date: new Date().toISOString(), content: "" },
   };
 }
 
 export async function getStaticPaths() {
+  const allPosts = getAllPosts();
+
   return {
-    paths: blogPosts.map((item) => ({
-      params: { slug: item.slug },
+    paths: allPosts.map((post) => ({
+      params: { slug: post.slug },
     })),
     fallback: false,
   };

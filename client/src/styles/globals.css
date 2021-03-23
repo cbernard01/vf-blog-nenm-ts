@@ -24,4 +24,8 @@
   .blog-header {
     @apply border-b-2 border-gray-200 mb-4
   }
+
+  .blog-content {
+    @apply prose
+  }
 }
