@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { blogPosts } from "../../lib/data";
+import { format, parseISO } from "date-fns";
 
 const Blog = ({ title, date, content }: any) => {
   return (
@@ -8,9 +9,13 @@ const Blog = ({ title, date, content }: any) => {
         <title>{title}</title>
       </Head>
       <main>
-        <h1>{title}</h1>
-        <h2>{date}</h2>
-        <p>{content}</p>
+        <div className={"blog-header"}>
+          <h1 className={"blog-title"}>{title}</h1>
+          <div className={"text-gray-600 text-sm"}>
+            {format(parseISO(date), "MMMM do, uuu")}
+          </div>
+        </div>
+        <p className={"blog-content"}>{content}</p>
       </main>
     </div>
   );

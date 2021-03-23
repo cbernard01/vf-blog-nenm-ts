@@ -22,7 +22,7 @@ const Home = () => {
             <div className={"text-gray-600 text-xs"}>
               {format(parseISO(item.date), "MMMM do, uuu")}
             </div>
-            <div>{item.content}</div>
+            <div className={"text-sm"}>{item.content}</div>
           </div>
         ))}
       </div>

@@ -14,6 +14,14 @@
   }
 
   .card {
-    @apply bg-white overflow-hidden shadow rounded-lg px-4 py-5 my-4  border border-gray-300
+    @apply transition duration-500 ease-in-out bg-white overflow-hidden shadow rounded-lg px-4 py-5 my-4 border border-gray-300 transform hover:-translate-y-1 hover:scale-110
+  }
+
+  .blog-title {
+    @apply text-2xl font-bold
+  }
+
+  .blog-header {
+    @apply border-b-2 border-gray-200 mb-4
   }
 }
